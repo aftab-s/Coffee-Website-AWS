@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee-website-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: coffee-website
+  template:
+    metadata:
+      labels:
+        app: coffee-website
+    spec:
+      containers:
+        - name: coffee-website-container
+          image: aftab2010/coffee-website
+          ports:
+            - containerPort: 8081
