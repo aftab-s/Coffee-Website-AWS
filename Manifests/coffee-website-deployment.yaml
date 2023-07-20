@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: coffee-website-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: coffee-website
@@ -17,3 +17,17 @@ spec:
           image: aftab2010/coffee-website
           ports:
             - containerPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: coffee-website-service
+spec:
+  selector:
+    app: coffee-website
+  type: LoadBalancer  
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 80
+      nodePort: 30001
